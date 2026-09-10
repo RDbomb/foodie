@@ -13,6 +13,7 @@
     "backend": { "root": "backend", "framework": "express", "entrypoint": "vercel.js" }
   },
   "rewrites": [
+    { "source": "/", "destination": { "type": "service", "service": "frontend", "path": "/index.html" }, "transforms": [{ "type": "request.path", "op": "set", "args": "/index.html" }] },
     { "source": "/api/:path*", "destination": { "type": "service", "service": "backend" } },
     { "source": "/assets/:path*", "destination": { "type": "service", "service": "frontend" } },
     { "source": "/:path*", "destination": { "type": "service", "service": "frontend" } }

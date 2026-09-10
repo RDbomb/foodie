@@ -33,7 +33,8 @@ export function attachRealtime(server,app){
  return io;
 }
 export function revokeRealtime(app,id){app.get('realtime')?.in('session:'+id).disconnectSockets(true);}
-export async function publishOrder(app,order,type){
+export async function publishOrder(app,order,type,fromDatabase=false){
+ if(app.get('distributedRealtime')&&!fromDatabase)return;
  const io=app.get('realtime');if(!io)return;
  await Promise.all([...io.sockets.sockets.values()].map(async socket=>{
   try{

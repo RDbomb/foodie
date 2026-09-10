@@ -15,7 +15,7 @@ import orderRoutes from "./routes/orderRoutes.js";
 import restaurantRoutes from "./routes/restaurantRoutes.js";
 
 const app = express();
-if(process.env.RENDER)app.set("trust proxy",1);
+if(process.env.RENDER||process.env.VERCEL)app.set("trust proxy",1);
 
 // ─── Experiment 5: Security Middleware ─────────────────────────
 // 1. Helmet — sets 14 security-related HTTP response headers
